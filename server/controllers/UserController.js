@@ -1,21 +1,21 @@
 import express from "express";
 import { Authorize } from "../middleware/authorize";
 import _userService from "../services/UserService";
-import _profileService from "../services/ProfileService";
+// import _profileService from "../services/ProfileService";
 // import socketService from "../Socket/SocketService";
 
 //PUBLIC
 export default class UserController {
   constructor() {
     // noinspection JSUnresolvedFunction
-	  this.router = express
+    this.router = express
       .Router()
       .post("/register", this.register)
       .post("/login", this.login)
       .use(Authorize.authenticated)
       .get("/authenticate", this.authenticate)
       .delete("/logout", this.logout)
-      .get("/:id/profiles", this.getProfileByUserId)
+      // .get("/:id/profiles", this.getProfileByUserId)
       .use(this.defaultRoute);
   }
 
@@ -68,15 +68,15 @@ export default class UserController {
     }
   }
 
-  async getProfileByUserId(req, res, next) {
-    try {
-      let data = await _profileService.getProfileByUserId(
-        req.params.id,
-        req.session.uid
-      );
-      return res.send(data);
-    } catch (error) {
-      next(error);
-    }
-  }
+  // async getProfileByUserId(req, res, next) {
+  //   try {
+  //     let data = await _profileService.getProfileByUserId(
+  //       req.params.id,
+  //       req.session.uid
+  //     );
+  //     return res.send(data);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
 }

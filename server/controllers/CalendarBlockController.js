@@ -7,9 +7,9 @@ export default class CalendarBlockController {
   constructor() {
     this.router = express
       .Router()
+      .use(Authorize.authenticated)
       .get("", this.getAll)
       .get("/:id", this.getById)
-      .use(Authorize.authenticated)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
@@ -22,7 +22,7 @@ export default class CalendarBlockController {
 
   async getAll(req, res, next) {
     try {
-      let data = await _calendarBlockService.getAll();
+      let data = await _calendarBlockService.getAll(req.session.uid);
       console.log(data);
       return res.send(data);
     } catch (error) {
@@ -32,7 +32,7 @@ export default class CalendarBlockController {
 
   async getById(req, res, next) {
     try {
-      let data = await _calendarBlockService.getById(req.params.id);
+      let data = await _calendarBlockService.getById(req.params.id, req.session.uid);
       return res.send(data);
     } catch (error) {
       next(error);

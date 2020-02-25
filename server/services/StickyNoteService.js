@@ -5,15 +5,15 @@ import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("StickyNote", StickyNote);
 
 class StickyNoteService {
-  async getAll() {
-    let data = await _repository.find()
+  async getAll(userId) {
+    let data = await _repository.find({ authorId: userId })
     return data;
   }
 
-  async getStickyNoteByUserId(userId, uid) {
-    let data = await _repository.findOne({ userId, authorId: uid })
-    return data
-  }
+  // async getStickyNoteByUserId(userId, uid) {
+  //   let data = await _repository.findOne({ userId, authorId: uid })
+  //   return data
+  // }
 
   async create(body) {
     let data = await _repository.create(body);

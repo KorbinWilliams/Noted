@@ -7,9 +7,9 @@ import { Authorize } from '../middleware/authorize.js'
 export default class StickyNoteController {
   constructor() {
     this.router = express.Router()
+      .use(Authorize.authenticated)
       .get("", this.getAll)
       .get('/:id', this.getById)
-      .use(Authorize.authenticated)
       .post('', this.create)
       .put('/:id', this.edit)
       .use(this.defaultRoute)
@@ -23,7 +23,7 @@ export default class StickyNoteController {
 
   async getAll(req, res, next) {
     try {
-      let data = await _stickyNoteService.getAll()
+      let data = await _stickyNoteService.getAll(req.session.uid)
       return data
     } catch (error) {
       next(error)

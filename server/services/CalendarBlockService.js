@@ -5,15 +5,15 @@ import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("CalendarBlock", CalendarBlock);
 
 class CalendarBlockService {
-  async getAll() {
-    let data = await _repository.find({});
+  async getAll(userId) {
+    let data = await _repository.find({ authorId: userId });
     console.log(data);
 
     return data;
   }
 
-  async getById(id) {
-    let data = await _repository.findOne({ _id: id });
+  async getById(id, userId) {
+    let data = await _repository.findOne({ _id: id, authorId: userId });
     if (!data) {
       throw new ApiError("Invalid ID", 400);
     }

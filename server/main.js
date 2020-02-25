@@ -21,7 +21,7 @@ Socket.setIO(io);
 
 const whitelist = ["http://localhost:8080"];
 const corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
     callback(null, originIsWhitelisted);
   },
@@ -44,10 +44,10 @@ server.use(new Session().express);
 server.use("/account", new UserController().router);
 
 //YOUR ROUTES HERE!!!!!!
-import QuizController from "./controllers/QuizController";
-import ProfileController from "./controllers/ProfileController";
-server.use("/api/quizes", new QuizController().router);
-server.use("/api/profiles", new ProfileController().router);
+import StickyNoteController from "./controllers/StickyNoteController";
+import CalendarBlockController from "./controllers/CalendarBlockController";
+server.use("/api/stickyNotes", new StickyNoteController().router);
+server.use("/api/calendarBlocks", new CalendarBlockController().router);
 
 //? Default error handler, catches all routes with an error attached
 server.use((error, req, res, next) => {
