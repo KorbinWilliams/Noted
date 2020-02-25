@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import Quiz from "../models/Quiz";
+import CalendarBlock from "../models/CalendarBlock";
 import ApiError from "../utils/ApiError";
 
-const _repository = mongoose.model("Quiz", Quiz);
+const _repository = mongoose.model("CalendarBlock", CalendarBlock);
 
-class QuizService {
+class CalendarBlockService {
   async getAll() {
     let data = await _repository.find({});
     console.log(data);
@@ -32,7 +32,7 @@ class QuizService {
       { new: true }
     );
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this quiz", 400);
+      throw new ApiError("Invalid ID or you do not own this calendarBlock", 400);
     }
     return data;
   }
@@ -43,10 +43,10 @@ class QuizService {
       authorId: userId
     });
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this quiz", 400);
+      throw new ApiError("Invalid ID or you do not own this calendarBlock", 400);
     }
   }
 }
 
-const _quizService = new QuizService();
-export default _quizService;
+const _calendarBlockService = new CalendarBlockService();
+export default _calendarBlockService;

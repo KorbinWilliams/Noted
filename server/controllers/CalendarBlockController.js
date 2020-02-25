@@ -1,9 +1,9 @@
-import _quizService from "../services/QuizService";
+import _calendarBlockService from "../services/StickyNotesService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
 
 //PUBLIC
-export default class QuizController {
+export default class CalendarBlockController {
   constructor() {
     this.router = express
       .Router()
@@ -22,7 +22,7 @@ export default class QuizController {
 
   async getAll(req, res, next) {
     try {
-      let data = await _quizService.getAll();
+      let data = await _calendarBlockService.getAll();
       console.log(data);
       return res.send(data);
     } catch (error) {
@@ -32,7 +32,7 @@ export default class QuizController {
 
   async getById(req, res, next) {
     try {
-      let data = await _quizService.getById(req.params.id);
+      let data = await _calendarBlockService.getById(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);
@@ -42,7 +42,7 @@ export default class QuizController {
   async create(req, res, next) {
     try {
       req.body.authorId = req.session.uid;
-      let data = await _quizService.create(req.body);
+      let data = await _calendarBlockService.create(req.body);
       return res.status(201).send(data);
     } catch (error) {
       next(error);
@@ -51,7 +51,7 @@ export default class QuizController {
 
   async edit(req, res, next) {
     try {
-      let data = await _quizService.edit(
+      let data = await _calendarBlockService.edit(
         req.params.id,
         req.session.uid,
         req.body
@@ -64,7 +64,7 @@ export default class QuizController {
 
   async delete(req, res, next) {
     try {
-      await _quizService.delete(req.params.id, req.session.uid);
+      await _calendarBlockService.delete(req.params.id, req.session.uid);
       return res.send("Successfully deleted");
     } catch (error) {
       next(error);

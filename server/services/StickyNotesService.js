@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
-import Profile from "../models/Profile";
+import StickyNote from "../models/StickyNote";
 import ApiError from "../utils/ApiError";
 
-const _repository = mongoose.model("Profile", Profile);
+const _repository = mongoose.model("StickyNote", StickyNote);
 
-class ProfileService {
+class StickyNoteService {
   async getAll() {
     let data = await _repository.find()
     return data;
   }
 
-  async getProfileByUserId(userId, uid) {
+  async getStickyNoteByUserId(userId, uid) {
     let data = await _repository.findOne({ userId, authorId: uid })
     return data
   }
@@ -35,11 +35,11 @@ class ProfileService {
       { new: true }
     );
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this profile", 400);
+      throw new ApiError("Invalid ID or you do not own this stickyNote", 400);
     }
     return data;
   }
 }
 
-const _profileService = new ProfileService();
-export default _profileService;
+const _stickyNoteService = new StickyNoteService();
+export default _stickyNoteService;

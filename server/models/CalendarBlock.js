@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
-const Profile = new Schema(
+const CalendarBlock = new Schema(
   {
     name: { type: String, required: true, immutable: true },
     email: { type: String, required: true },
@@ -17,4 +17,4 @@ const Profile = new Schema(
   { timestamps: true }
 );
 
-export default Profile;
+export default CalendarBlock;
