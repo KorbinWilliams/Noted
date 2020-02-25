@@ -1,4 +1,4 @@
-import _calendarBlockService from "../services/StickyNotesService";
+import _calendarBlockService from "../services/CalendarBlockService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
 
