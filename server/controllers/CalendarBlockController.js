@@ -10,6 +10,8 @@ export default class CalendarBlockController {
       .use(Authorize.authenticated)
       .get("", this.getAll)
       .get("/:id", this.getById)
+      // .get("/?date=:date", this.getByDate) Would this work???
+      .get("/:date", this.getByDate)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
