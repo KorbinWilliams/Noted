@@ -7,7 +7,7 @@ import Calendar from '../views/Calendar.vue'
 // @ts-ignore
 import Login from '../views/Login.vue'
 // @ts-ignore
-import PostIts from '../view/PostIts.vue'
+import Postits from '../views/PostIts.vue'
 
 Vue.use(VueRouter)
 
@@ -40,9 +40,9 @@ const routes = [
     // will switch months for calendar inside calendar view (toggle data with v-show/if? or filter?)
   },
   {
-    path: '/PostIts',
-    name: 'PostIts',
-    components: PostIts
+    path: '/Postits',
+    name: 'Postits',
+    component: Postits
   }
 ]
 
