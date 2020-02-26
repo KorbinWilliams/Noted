@@ -20,6 +20,14 @@ class CalendarBlockService {
     return data;
   }
 
+  async getByDate(date) {
+    let data = await _repository.findOne({ date: date })
+    if (!data) {
+      throw new ApiError("Invalid Id");
+    }
+    return data
+  }
+
   async create(rawData) {
     let data = await _repository.create(rawData);
     return data;

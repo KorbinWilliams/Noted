@@ -39,6 +39,14 @@ export default class CalendarBlockController {
     }
   }
 
+  async getByDate(req, res, next) {
+    try {
+      let data = await _calendarBlockService.getByDate(req.body.date)
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async create(req, res, next) {
     try {
       req.body.authorId = req.session.uid;
