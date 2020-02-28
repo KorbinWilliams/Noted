@@ -22,17 +22,6 @@ const routes = [
     name: 'Dashboard',
     component: Dashboard
   },
-  // {
-  // path: '/about',
-  // name: 'About',
-  // route level code-splitting
-  // this generates a separate chunk (about.[hash].js) for this route
-  // which is lazy-loaded when the route is visited.
-  // component: function () {
-  //   // @ts-ignore
-  //   return import("../views/Dashboard.vue")
-  // }
-  // },
   {
     path: '/Calendar',
     name: 'Calendar',

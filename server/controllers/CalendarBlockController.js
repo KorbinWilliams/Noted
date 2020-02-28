@@ -43,7 +43,9 @@ export default class CalendarBlockController {
 
   async getByDate(req, res, next) {
     try {
-      let data = await _calendarBlockService.getByDate(req.body.date)
+      // req.body.date, traded for req.params.date
+      let data = await _calendarBlockService.getByDate(req.params.date)
+      return res.send(data);
     } catch (error) {
       next(error)
     }

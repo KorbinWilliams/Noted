@@ -8,7 +8,6 @@ class CalendarBlockService {
   async getAll(userId) {
     let data = await _repository.find({ authorId: userId });
     console.log(data);
-
     return data;
   }
 
